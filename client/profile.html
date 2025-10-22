@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Profile – Nexus Haven</title>
+  <link rel="stylesheet" href="css/variables.css"/>
+  <link rel="stylesheet" href="css/profile.css"/>
+  <script src="js/theme.js" defer></script>
+</head>
+<body>
+<header class="glass-bar">
+  <a href="index.html" class="arrow-link">
+    <img src="assets/back-white.png" alt="Back" class="arrow-icon"/>
+  </a>
+  <h1 class="bar-title">Profile</h1>
+  <button id="themeToggle" title="Toggle theme">☀️</button>
+</header>
+
+<main class="profile-main">
+  <!-- top card -->
+  <section class="profile-card">
+    <div class="info">
+      <h2 id="userName" contenteditable="true">Loading…</h2>
+      <p id="userTag"  contenteditable="true">@…</p>
+    </div>
+    <div class="avatar-box">
+      <img id="avatarImg" src="assets/user.png" alt="Avatar"/>
+      <input type="file" id="fileInput" accept="image/*" hidden>
+    </div>
+  </section>
+
+  <!-- ReadyPlayerMe -->
+  <section class="rpm-section">
+    <button id="rpmBtn" class="glass-btn">Create Ready-Player-Me Avatar</button>
+    <iframe id="rpmFrame" hidden allow="camera *; microphone *"></iframe>
+    <p id="rpmUrl" class="hidden"></p>
+  </section>
+
+  <!-- settings -->
+  <section class="settings">
+    <h3>Avatar Settings</h3>
+    <label>Skin Color</label>
+    <div class="color-picker" id="skinPicker"></div>
+
+    <label>Hair</label>
+    <select id="hairSelect"></select>
+
+    <label>Gender</label>
+    <select id="genderSelect"></select>
+
+    <label>Body Type</label>
+    <select id="bodySelect"></select>
+
+    <button id="saveBtn" class="glass-btn">Save Changes</button>
+  </section>
+</main>
+
+<script type="module" src="js/profile.js"></script>
+</body>
+</html>

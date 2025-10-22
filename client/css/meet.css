@@ -1,0 +1,5 @@
+.meet-main{padding:2rem 4vw;display:grid;gap:2rem;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));max-width:900px;margin:auto}
+.glass-card{background:var(--glass);border:1px solid var(--accent);border-radius:var(--radius);padding:1.8rem}
+.glass-card h2{margin-bottom:1rem;font-weight:500}
+input,select{width:100%;margin:.5rem 0;padding:.7rem;border:1px solid var(--accent);border-radius:8px;background:transparent;color:var(--fg)}
+.glass-btn{width:100%;margin-top:1rem}

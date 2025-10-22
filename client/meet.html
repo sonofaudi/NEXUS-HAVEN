@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Meet – Nexus Haven</title>
+  <link rel="stylesheet" href="css/variables.css"/>
+  <link rel="stylesheet" href="css/meet.css"/>
+  <script src="js/theme.js" defer></script>
+</head>
+<body>
+<header class="glass-bar">
+  <a href="index.html" class="arrow-link">
+    <img src="assets/back-white.png" alt="Back" class="arrow-icon"/>
+  </a>
+  <h1 class="bar-title">Meet</h1>
+  <button id="themeToggle" title="Toggle theme">☀️</button>
+</header>
+
+<main class="meet-main">
+  <section class="glass-card">
+    <h2>Join Meeting</h2>
+    <input id="joinCode" type="text" placeholder="Paste invite code" maxlength="8"/>
+    <button id="joinBtn" class="glass-btn">Join</button>
+  </section>
+
+  <section class="glass-card">
+    <h2>Host Meeting</h2>
+    <input id="title" type="text" placeholder="Meeting title" />
+    <input id="duration" type="number" min="1" max="180" placeholder="Duration (min)" />
+    <select id="sceneSelect">
+      <option value="conference-room">Conference Room</option>
+      <option value="jungle">Jungle</option>
+      <option value="class-room">Class Room</option>
+      <option value="office-space">Office Space</option>
+    </select>
+    <button id="hostBtn" class="glass-btn">Host</button>
+  </section>
+</main>
+
+<script type="module" src="js/meet.js"></script>
+</body>
+</html>

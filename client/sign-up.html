@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Sign Up – Nexus Haven</title>
+  <link rel="stylesheet" href="css/variables.css"/>
+  <link rel="stylesheet" href="css/auth.css"/>
+  <script src="js/theme.js" defer></script>
+</head>
+<body>
+<header class="glass-bar">
+  <a href="index.html" class="logo"><img src="assets/logo-white.png" alt="Nexus Haven"/></a>
+  <button id="themeToggle" title="Toggle theme">☀️</button>
+</header>
+
+<main class="auth-box">
+  <form id="signUpForm" autocomplete="off">
+    <h2>Create Account</h2>
+
+    <label>Name</label>
+    <input type="text" id="name" required placeholder="Your name"/>
+
+    <label>Tag</label>
+    <input type="text" id="tag" required placeholder="@handle"/>
+
+    <label>Email</label>
+    <input type="email" id="email" required placeholder="you@example.com"/>
+
+    <label>Password</label>
+    <div class="pwd-wrap">
+      <input type="password" id="password" required placeholder="Min 8 characters"/>
+      <span class="toggle-pwd" onclick="togglePwd()">👁️</span>
+    </div>
+
+    <button type="submit" class="glass-btn">Sign Up</button>
+    <p class="swap">Already have an account? <a href="sign-in.html">Sign in</a></p>
+  </form>
+</main>
+
+<script type="module" src="js/sign-up.js"></script>
+</body>
+</html>

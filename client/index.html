@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Nexus Haven – Connect in VR</title>
+  <link rel="stylesheet" href="css/variables.css"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <script src="https://unpkg.com/@splinetool/viewer@1.10.48/build/spline-viewer.js" type="module"></script>
+</head>
+<body>
+  <!-- background blobs -->
+  <img class="image-gradient" src="assets/gradient.png" alt="gradient"/>
+  <div class="layer-blur"></div>
+
+  <!-- sticky header -->
+  <header class="glass-bar">
+    <a href="index.html" class="logo"><img src="assets/logo white.png" alt="Nexus Haven"/></a>
+    <nav>
+      <a href="index.html" class="active">Home</a>
+      <a href="meet.html">Meet</a>
+      <a href="help.html">Help</a>
+      <a href="about.html">About</a>
+      <a href="profile.html">Profile</a>
+      <button id="themeToggle" title="Dark/light mode">
+        <img src="assets/icons8-toggle-on-50.png" class="dark" alt="dark mode">
+      </button>
+    </nav>
+
+    <!-- hamburger for mobile -->
+    <div class="menu-bar">
+      <div class="hamburger" onclick="this.parentElement.classList.toggle('open')">
+        <span></span><span></span><span></span>
+      </div>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="meet.html">Meet</a></li>
+        <li><a href="help.html">Help</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="profile.html">Profile</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- hero -->
+  <main>
+    <div class="introducing">
+      <div class="tag">INTRODUCING &wedbar;</div>
+    </div>
+
+    <h1 class="hero">VR-HOBB</h1>
+    <p class="description">
+      The best way to connect, host online meetings, classes or even meet new people — all inside beautiful shared spaces.
+    </p>
+    <p class="dspn">Shall we...</p>
+
+    <div class="get-started">
+      <a href="#" id="getStartedBtn">Get Started</a>
+    </div>
+  </main>
+
+  <!-- 3D model -->
+  <div class="model-3d">
+    <spline-viewer loading-anim-type="spinner-small-light"
+      url="https://prod.spline.design/MMqrFpjXHI8memfr/scene.splinecode"></spline-viewer>
+  </div>
+
+  <!-- footer -->
+  <hr>
+  <footer><center>&copy; 2025 Nexus Haven. All rights reserved.</center></footer>
+
+  <!-- scripts -->
+  <script src="js/theme.js" type="module"></script>
+  <script src="js/nav-protect.js" type="module"></script>
+</body>
+</html>

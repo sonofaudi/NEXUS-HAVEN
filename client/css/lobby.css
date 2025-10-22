@@ -1,0 +1,4 @@
+.lobby-main{padding:2rem 4vw;display:flex;flex-direction:column;align-items:center;gap:2rem}
+#unity-container{width:90vw;height:70vh;max-width:1200px;background:#000;border-radius:var(--radius)}
+#unity-canvas{width:100%;height:100%}
+.hidden{display:none}

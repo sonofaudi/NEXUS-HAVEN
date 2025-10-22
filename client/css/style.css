@@ -1,0 +1,136 @@
+/* hero gradient blob */
+.image-gradient{
+  position:absolute;
+  top:0;
+  right:0;
+  width:60vw;
+  max-width:800px;
+  opacity:.5;
+  z-index:-1;
+}
+.layer-blur{
+  position:absolute;
+  top:20%;
+  right:0;
+  width:30rem;
+  height:0;
+  box-shadow:0 0 700px 15px var(--accent);
+  rotate:30deg;
+  z-index:-1;
+}
+/* intro tag */
+.introducing{
+  position:relative;
+  top: 5vh;
+  width:250px;
+  height:35px;
+  border-radius:50px;
+  background:linear-gradient(90deg,var(--accent),#c175ff);
+  background-size:200%;
+  animation:gradient 2.5s linear infinite;
+  box-shadow:0 0 15px rgba(225,225,225,.3);
+}
+.introducing .tag{
+  position:absolute;
+  inset:3px;
+  background:var(--bg);
+  border-radius:50px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:.8rem;
+  font-weight:600;
+  cursor:pointer;
+  transition:background .3s;
+}
+.introducing .tag:hover{
+  background:transparent;
+  color:var(--bg);
+}
+@keyframes gradient{
+  0%{background-position:0%}
+  100%{background-position:200%}
+}
+/* main text */
+main{
+  padding: 8rem 4vw;
+}
+h1.hero{
+  font-size:clamp(2.2rem,5vw,3.5rem);
+  font-weight:400;
+  margin-top:2rem;
+}
+h2.cta{
+  display:inline-block;
+  margin-top:1.2rem;
+  padding:.5rem 1rem;
+  border:2px solid var(--accent);
+  border-radius:var(--radius);
+  font-size:clamp(1rem,2.5vw,1.5rem);
+  cursor:pointer;
+  transition:all .2s;
+}
+h2.cta:hover{
+  background:var(--accent);
+  color:var(--bg);
+}
+.description{
+  margin-top:1.5rem;
+  max-width:40rem;
+  opacity:.85;
+  font-size:1.3rem;
+  font-weight: 600;
+}
+.dspn{
+  padding: -5px 10px; 
+  margin-top: 40px;
+  width:150px;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #c478ffc7;
+  border-radius: 20px;
+  border: 2px solid rgba(150, 84, 255, 0.151);
+}
+.get-started{
+  position:relative;
+  margin-top:3rem;
+}
+.get-started a{
+  display:inline-block;
+  padding:.8rem 1.8rem;
+  border-radius:50px;
+  background:rgba(212, 72, 255, 0.192);
+  color:#fff;
+  border: 3px solid rgba(123, 58, 228, 0.473);
+  text-decoration:none;
+  font-weight:500;
+  box-shadow:var(--shadow);
+  transition:transform .2s;
+}
+.get-started a:hover{transform:scale(0.98);
+border: 2px solid rgba(212, 72, 255, 0.555);
+background-color: transparent;
+transition: ease-in-out 0.4s;}
+
+/* 3d viewer */
+.model-3d{
+  position:fixed;
+  top: 10vw;
+  right:5vw;
+  width:50vw;
+  height:50vh;
+  max-width:600px;
+  max-height:600px;
+  z-index:1;
+}
+
+/* mobile menu */
+.menu-bar{display:none}
+@media(max-width:768px){
+  nav{display:none}
+  .menu-bar{display:block}
+  model-3d{
+    width:20vw;
+    height:20vw;
+  }
+}
