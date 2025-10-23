@@ -10,31 +10,24 @@
 </head>
 <body>
 <header class="glass-bar">
-  <a href="index.html" class="arrow-link">
-    <img src="assets/back-white.png" alt="Back" class="arrow-icon"/>
-  </a>
-  <h1 class="bar-title">Profile</h1>
-  <button id="themeToggle" title="Toggle theme">☀️</button>
-</header>
+  <a href="index.html" class="arrow"><img src="assets/back white.png" alt="Nexus Haven"/></a>
+    <h1 class="title">Profile</h1>
+    <button id="themeToggle" title="Dark/light mode">
+        <img src="assets/icons8-toggle-on-50.png" class="dark" alt="mode">
+      </button>
+  </header>
 
 <main class="profile-main">
   <!-- top card -->
   <section class="profile-card">
     <div class="info">
-      <h2 id="userName" contenteditable="true">Loading…</h2>
-      <p id="userTag"  contenteditable="true">@…</p>
+      <h2 id="userName" contenteditable="true">User</h2>
+      <p id="userTag"  contenteditable="true">@unknown</p>
     </div>
     <div class="avatar-box">
       <img id="avatarImg" src="assets/user.png" alt="Avatar"/>
       <input type="file" id="fileInput" accept="image/*" hidden>
     </div>
-  </section>
-
-  <!-- ReadyPlayerMe -->
-  <section class="rpm-section">
-    <button id="rpmBtn" class="glass-btn">Create Ready-Player-Me Avatar</button>
-    <iframe id="rpmFrame" hidden allow="camera *; microphone *"></iframe>
-    <p id="rpmUrl" class="hidden"></p>
   </section>
 
   <!-- settings -->
@@ -55,6 +48,12 @@
     <button id="saveBtn" class="glass-btn">Save Changes</button>
   </section>
 </main>
+
+  <!-- ReadyPlayerMe -->
+  <section class="rpm-section">
+    <iframe id="rpmFrame" hidden allow="camera *; microphone *"></iframe>
+    <p id="rpmUrl" class="hidden"></p>
+  </section>
 
 <script type="module" src="js/profile.js"></script>
 </body>

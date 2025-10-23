@@ -90,15 +90,16 @@ saveBtn.addEventListener('click', async ()=>{
   if(res.msg) return alert(res.msg);
   alert('Profile saved!');
 });
-
-/* ---------- ReadyPlayerMe ---------- */
-rpmBtn.addEventListener('click', ()=>{
-  rpmFrame.src = `https://demo.readyplayer.me/avatar?frameApi`;
+/* ---------- ReadyPlayerMe – open immediately ---------- */
+window.addEventListener('DOMContentLoaded', () => {
+  rpmFrame.src = 'https://demo.readyplayer.me/avatar?frameApi';
   rpmFrame.hidden = false;
 });
-window.addEventListener('message', e=>{
-  if(e.data?.eventName==='v1.avatar.exported'){
+
+window.addEventListener('message', e => {
+  if (e.data?.eventName === 'v1.avatar.exported') {
     rpmUrl.textContent = e.data.data.url;
     rpmFrame.hidden = true;
   }
 });
+

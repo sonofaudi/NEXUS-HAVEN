@@ -1,18 +1,51 @@
 .arrow-icon{width:28px;height:auto;filter:invert(1)}
 .bar-title{margin:auto;font-size:1.4rem;font-weight:500}
-.profile-main{padding:2rem 4vw;max-width:700px;margin:auto}
+.profile-main{ padding:2rem 4vw;margin:5rem}
 .profile-card{
-  display:flex;justify-content:space-between;align-items:center;
+  max-width:30%;display:flex;justify-content:space-between;align-items:center;
   background:var(--glass);border:1px solid var(--accent);
-  border-radius:var(--radius);padding:1.5rem;margin-bottom:2rem;
+  border-radius:var(--radius);padding:1.5rem;margin-bottom:2rem;margin-left:70%;
 }
 .avatar-box{position:relative}
 #avatarImg{width:90px;height:90px;border-radius:50%;border:3px solid var(--accent);cursor:pointer}
 #fileInput{display:none}
 .rpm-section{margin-bottom:2rem;text-align:center}
 .settings label{margin-top:1rem;font-size:.9rem;font-weight:500;display:block}
+.settings{width: 40%;}
 select,input{width:100%;padding:.6rem;border:1px solid var(--accent);border-radius:8px;background:transparent;color:var(--fg)}
 .color-picker{display:flex;gap:.5rem;margin:.5rem 0}
 .color-option{width:32px;height:32px;border-radius:50%;cursor:pointer;border:2px solid transparent}
 .color-option.selected{border-color:#fff;transform:scale(1.15)}
 #saveBtn{margin-top:1.5rem}
+.title{position: absolute;left: 88%; color: rgba(255, 255, 255, 0.856);font-weight: 500;font-size:1.5rem;}
+.arrow{scale: 0.6;}
+
+
+.glass-btn {
+  background: rgba(255,255,255,.15);
+  border: 1px solid rgba(255,255,255,.25);
+  color: #fff;
+  padding: 1rem 1.2rem;
+  border-radius: 20px;
+  backdrop-filter: blur(6px);
+  cursor: pointer;
+  transition: .25s;
+}
+
+.glass-btn:hover {
+  background: rgba(255,255,255,.25);
+  border-color: rgba(255,255,255,.45);
+}
+
+#rpmFrame {
+  width: 35%;       
+  height: 600px;     
+  border: none;
+  border-radius: 12px; 
+  z-index:1;
+  position: absolute;
+  left: 60%;
+  top: 280px;
+  margin: 0;
+
+}
