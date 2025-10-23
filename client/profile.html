@@ -17,44 +17,29 @@
       </button>
   </header>
 
-<main class="profile-main">
-  <!-- top card -->
-  <section class="profile-card">
-    <div class="info">
-      <h2 id="userName" contenteditable="true">User</h2>
-      <p id="userTag"  contenteditable="true">@unknown</p>
-    </div>
-    <div class="avatar-box">
-      <img id="avatarImg" src="assets/user.png" alt="Avatar"/>
-      <input type="file" id="fileInput" accept="image/*" hidden>
-    </div>
-  </section>
+  <main class="profile-main">
+    <!-- 1  card  -->
+    <section class="profile-card">
+      <div class="avatar-box">
+        <img id="avatarImg" src="assets/user.png" alt="Avatar">
+        <input type="file" id="fileInput" accept="image/*" hidden>
+      </div>
+        <div class="info">
+        <h2 id="userName" contenteditable="plaintext-only" data-max-char="20">Default User</h2>
+        <p id="userTag"  contenteditable="plaintext-only" data-max-char="10">@unknown</p>
+      </div>
+    </section>
 
-  <!-- settings -->
-  <section class="settings">
-    <h3>Avatar Settings</h3>
-    <label>Skin Color</label>
-    <div class="color-picker" id="skinPicker"></div>
+    <!-- 2  RPM frame  –  visible by default  -->
+    <section class="rpm-section">
+      <iframe id="rpmFrame"
+              src="https://demo.readyplayer.me/avatar?frameApi"
+              allow="camera *; microphone *"
+              title="Create your avatar"></iframe>
+      <p id="rpmUrl" class="hidden"></p>
+    </section>
+  </main>
 
-    <label>Hair</label>
-    <select id="hairSelect"></select>
-
-    <label>Gender</label>
-    <select id="genderSelect"></select>
-
-    <label>Body Type</label>
-    <select id="bodySelect"></select>
-
-    <button id="saveBtn" class="glass-btn">Save Changes</button>
-  </section>
-</main>
-
-  <!-- ReadyPlayerMe -->
-  <section class="rpm-section">
-    <iframe id="rpmFrame" hidden allow="camera *; microphone *"></iframe>
-    <p id="rpmUrl" class="hidden"></p>
-  </section>
-
-<script type="module" src="js/profile.js"></script>
+  <script src="js/profile.js" type="module"></script>
 </body>
 </html>

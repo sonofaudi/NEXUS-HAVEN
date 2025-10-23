@@ -3,3 +3,5 @@
 .glass-card h2{margin-bottom:1rem;font-weight:500}
 input,select{width:100%;margin:.5rem 0;padding:.7rem;border:1px solid var(--accent);border-radius:8px;background:transparent;color:var(--fg)}
 .glass-btn{width:100%;margin-top:1rem}
+.title{ color: rgba(255, 255, 255, 0.856);font-weight: 500;font-size:1.5rem;}
+.arrow{scale: 0.6;}
