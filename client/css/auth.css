@@ -58,8 +58,4 @@ input{
   padding-top: 10px;
 }
 
-.title{
-  color: rgba(255, 255, 255, 0.856);
-  font-weight: 500;
-  font-size:1.5rem;
-}
+.title{ color: rgba(255, 255, 255, 0.856);font-weight: 500;font-size:1.5rem;}
