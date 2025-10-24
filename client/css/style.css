@@ -200,6 +200,10 @@ transition: ease-in-out 0.4s;}
     display: block;
     text-align: right;
   }
+  .introducing{
+   position:absolute;
+   top:20%;
+  }
   .dark{
     scale:1.3;
   }

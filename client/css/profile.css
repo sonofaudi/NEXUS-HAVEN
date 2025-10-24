@@ -32,7 +32,7 @@
 
 .avatar-box{position:relative}
 #avatarImg{width:90px;height:90px;border-radius:50%;border:3px solid var(--accent);cursor:pointer}
-#fileInput{display:none; max}
+#fileInput{display:none; }
 
 
 
@@ -40,7 +40,7 @@
   max-width: 20ch;
   overflow: hidden;
   line-height: 1.3em;
-  max-height: calc(1.3em * 2);   /* 2-line lock */
+  max-height: calc(1.3em * 2);   
   word-break: break-word;
 }
 
