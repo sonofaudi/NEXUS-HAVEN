@@ -184,7 +184,7 @@ transition: ease-in-out 0.4s;}
   .model-3d{
     width:50vw;
     height:50vw;
-    margin-top: 300px;
+    margin-top: 150px;
   }
   .menu-bar.open ul {
     max-height: 400px;          
@@ -201,8 +201,17 @@ transition: ease-in-out 0.4s;}
     text-align: right;
   }
   .introducing{
-   position:absolute;
-   top:20%;
+ margin-top:5px;
+  }
+  .model-3d{
+    width:100%;
+    height:auto;
+  }
+  .hero{
+    margin-top:10px;
+  }
+  .get-started{
+    z-index:10;
   }
   .dark{
     scale:1.3;

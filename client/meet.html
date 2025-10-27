@@ -9,33 +9,43 @@
   <script src="js/theme.js" defer></script>
 </head>
 <body>
+
 <header class="glass-bar">
   <a href="index.html" class="arrow"><img src="assets/back white.png" alt="Nexus Haven"/></a>
-    <h1 class="title">Meet</h1>
-    <button id="themeToggle" title="Dark/light mode">
-        <img src="assets/icons8-toggle-on-50.png" class="dark" alt="mode">
-      </button>
-  </header>
+  <h1 class="title">Meet</h1>
+  <button id="themeToggle" title="Dark/light mode">
+    <img src="assets/icons8-toggle-on-50.png" class="dark" alt="mode">
+  </button>
+</header>
 
 <main class="meet-main">
-  <section class="glass-card">
+  <!-- ======  JOIN CARD  ====== -->
+  <section class="glass-card" id="join-card">
     <h2>Join Meeting</h2>
     <input id="joinCode" type="text" placeholder="Paste invite code" maxlength="8"/>
     <button id="joinBtn" class="glass-btn">Join</button>
   </section>
 
-  <section class="glass-card">
+                   <h1 class="or">OR</h1>
+
+  <!-- ======  HOST CARD  ====== -->
+  <section class="glass-card" id="host-card">
     <h2>Host Meeting</h2>
-    <input id="title" type="text" placeholder="Meeting title" />
-    <input id="duration" type="number" min="1" max="180" placeholder="Duration (min)" />
-    <select id="sceneSelect">
-      <option value="conference-room">Conference Room</option>
-      <option value="jungle">Jungle</option>
-      <option value="class-room">Class Room</option>
-      <option value="office-space">Office Space</option>
+    <input id="title" type="text" placeholder="Title of Meeting"/>
+    <select id="duration">
+      <option value="" disabled selected>Duration</option>
+      <option value="10">10 min</option>
+      <option value="15">15 min</option>
+      <option value="30">30 min</option>
+      <option value="45">45 min</option>
+      <option value="60">1 hr</option>
+      <option value="90">1.5 hrs</option>
+      <option value="120">2 hrs</option>
     </select>
-    <button id="hostBtn" class="glass-btn">Host</button>
+    <button id="hostBtn" class="glass-btn">Continue</button>
   </section>
+
+                     <video src="assets/RPM.mp4" class="rpm" alt="demo reel" autoplay loop muted></video>
 </main>
 
 <script type="module" src="js/meet.js"></script>
