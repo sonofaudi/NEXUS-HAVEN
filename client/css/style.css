@@ -173,22 +173,23 @@ transition: ease-in-out 0.4s;}
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease;
-    background: #000000b4;
+    background: #000000;
     backdrop-filter: blur(20px);
-    border: none;
-    border-radius: 12px;
+    border-radius: 25px;
+    filter: 5px;
     flex-direction: column;
     gap: 0.5rem;
     padding: 0 1rem;
   }
   .model-3d{
     width:50vw;
-    height:50vw;
+    height:100vw;
     margin-top: 150px;
   }
   .menu-bar.open ul {
     max-height: 400px;          
     padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.568);
   }
   .menu-bar ul li {
     list-style: none;

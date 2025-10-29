@@ -1,27 +1,11 @@
-import { getStartedRedirect } from './api.js';
-
-document.getElementById('getStartedBtn')?.addEventListener('click', e => {
-  e.preventDefault();
-  getStartedRedirect();
+/* hamburger toggle */
+document.querySelector('.hamburger')?.addEventListener('click', e => {
+  e.stopPropagation();                 // block outside-click
+  document.querySelector('.menu-bar').classList.toggle('open');
 });
 
-
-/* toggle hamburger nav */
-document.querySelector('.hamburger')?.addEventListener('click', function () {
-  this.parentElement.classList.toggle('open');
-});
-
-
-  /* 1️⃣  theme toggle inside hamburger */
-  document.querySelectorAll('#themeToggle').forEach(btn =>
-    btn.addEventListener('click', () => {
-      document.documentElement.classList.toggle('light-mode');
-      localStorage.setItem('theme', document.documentElement.classList.contains('light-mode') ? 'light' : 'dark');
-    })
-  );
-
-/* 2️⃣  close menu when clicking outside */
+/* close when clicking outside */
 document.addEventListener('click', e => {
   const menu = document.querySelector('.menu-bar');
-  if (!menu.contains(e.target)) menu.classList.remove('open');
+  if (menu && !menu.contains(e.target)) menu.classList.remove('open');
 });
