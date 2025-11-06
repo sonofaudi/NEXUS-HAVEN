@@ -17,24 +17,49 @@
       </button>
   </header>
 
-<main class="scenes-grid">
-  <div class="scene-card" data-scene="conference-room">
-    <img src="assets/conference-room.jpg" alt="Conference Room"/>
-    <p>Conference Room</p>
+  <!-- Scroll container -->
+  <div class="scroll-container" id="scrollContainer">
+    <div class="carousel">
+    <!-- Scene 1 -->
+    <div class="scene-card" data-scene="conference-room">
+      <img src="assets/Conference room.jpg" alt="Conference-room" />
+      <p>Conference Room</p>
+    </div>
+
+    <!-- Scene 2 -->
+    <div class="scene-card" data-scene="jungle">
+      <img src="assets/Jungle.jpg" alt="Jungle Scene" />
+      <p>Park</p>
+    </div>
+
+    <!-- Scene 3 -->
+    <div class="scene-card" data-scene="office-space">
+      <img src="assets/Office Space.jpg" alt="Office Scene" />
+      <p>Office Space</p>
+    </div>
+
+    <!-- Scene 4 -->
+    <div class="scene-card" data-scene="class-room">
+      <img src="assets/Class room.jpg" alt="Class Room" />
+      <p>Class Room</p>
+    </div>
   </div>
-  <div class="scene-card" data-scene="jungle">
-    <img src="assets/jungle.jpg" alt="Jungle"/>
-    <p>Jungle</p>
   </div>
-  <div class="scene-card" data-scene="class-room">
-    <img src="assets/class-room.jpg" alt="Class Room"/>
-    <p>Class Room</p>
-  </div>
-  <div class="scene-card" data-scene="office-space">
-    <img src="assets/office-space.jpg" alt="Office Space"/>
-    <p>Office Space</p>
-  </div>
-</main>
+      <button class="nav-arrow left" aria-label="Previous">‹</button>
+      <button class="nav-arrow right" aria-label="Next">›</button>
+
+
+  <!-- JS -->
+  <script>
+    // When a card is clicked → save scene + go to VR meeting
+    document.querySelectorAll('.scene-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const scene = card.dataset.scene;
+        localStorage.setItem("selectedScene", scene);
+        window.location.href = "vr-meeting.html";
+      });
+    });
+  </script>
 
 <script type="module" src="js/scenes.js"></script>
 </body>
