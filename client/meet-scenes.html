@@ -4,63 +4,43 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Pick Scene – Nexus Haven</title>
-  <link rel="stylesheet" href="css/variables.css"/>
   <link rel="stylesheet" href="css/scenes.css"/>
-  <script src="js/theme.js" defer></script>
+  <link rel="stylesheet" href="css/variables.css">
+  <script src="js/scenes.js" defer></script>
 </head>
 <body>
-<header class="glass-bar">
-  <a href="index.html" class="arrow"><img src="assets/back white.png" alt="Nexus Haven"/></a>
-    <h1 class="title">Pick scenes</h1>
-    <button id="themeToggle" title="Dark/light mode">
-        <img src="assets/icons8-toggle-on-50.png" class="dark" alt="mode">
-      </button>
+  <header class="glass-bar">
+    <a href="index.html" class="arrow"><img src="assets/back white.png" alt="Back"/></a>
+    <h1 class="title">Pick Scene</h1>
+    <button id="themeToggle">
+      <img src="assets/icons8-toggle-on-50.png" class="dark" alt="mode">
+    </button>
   </header>
 
-  <!-- Scroll container -->
-  <div class="scroll-container" id="scrollContainer">
-    <div class="carousel">
-    <!-- Scene 1 -->
-    <div class="scene-card" data-scene="conference-room">
-      <img src="assets/Conference room.jpg" alt="Conference-room" />
-      <p>Conference Room</p>
+  <section class="futuristic-slider">
+    <button class="nav-arrow left">‹</button>
+    <div class="slider-track">
+      <div class="scene-card" data-scene="conference-room">
+        <img src="assets/Conference room.jpg" alt="Conference Room">
+        <p>Conference Room</p>
+      </div>
+
+      <div class="scene-card" data-scene="jungle">
+        <img src="assets/Jungle.jpg" alt="Park">
+        <p>Park</p>
+      </div>
+
+      <div class="scene-card" data-scene="office-space">
+        <img src="assets/Office Space.jpg" alt="Office Space">
+        <p>Office Space</p>
+      </div>
+
+      <div class="scene-card" data-scene="class-room">
+        <img src="assets/Class room.jpg" alt="Class Room">
+        <p>Class Room</p>
+      </div>
     </div>
-
-    <!-- Scene 2 -->
-    <div class="scene-card" data-scene="jungle">
-      <img src="assets/Jungle.jpg" alt="Jungle Scene" />
-      <p>Park</p>
-    </div>
-
-    <!-- Scene 3 -->
-    <div class="scene-card" data-scene="office-space">
-      <img src="assets/Office Space.jpg" alt="Office Scene" />
-      <p>Office Space</p>
-    </div>
-
-    <!-- Scene 4 -->
-    <div class="scene-card" data-scene="class-room">
-      <img src="assets/Class room.jpg" alt="Class Room" />
-      <p>Class Room</p>
-    </div>
-  </div>
-  </div>
-      <button class="nav-arrow left" aria-label="Previous">‹</button>
-      <button class="nav-arrow right" aria-label="Next">›</button>
-
-
-  <!-- JS -->
-  <script>
-    // When a card is clicked → save scene + go to VR meeting
-    document.querySelectorAll('.scene-card').forEach(card => {
-      card.addEventListener('click', () => {
-        const scene = card.dataset.scene;
-        localStorage.setItem("selectedScene", scene);
-        window.location.href = "vr-meeting.html";
-      });
-    });
-  </script>
-
-<script type="module" src="js/scenes.js"></script>
+    <button class="nav-arrow right">›</button>
+  </section>
 </body>
 </html>

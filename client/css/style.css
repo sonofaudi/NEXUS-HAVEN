@@ -173,18 +173,22 @@ transition: ease-in-out 0.4s;}
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease;
-    background: #000000;
-    backdrop-filter: blur(20px);
     border-radius: 25px;
-    filter: 5px;
     flex-direction: column;
     gap: 0.5rem;
     padding: 0 1rem;
+    background: rgba(31, 5, 49, 0.705);
+    
   }
   .model-3d{
     width:50vw;
-    height:100vw;
+    height:50vw;
     margin-top: 150px;
+    scale: 0.8;
+    position: absolute;
+    left: 10%;
+    top: 15%;
+    opacity: 0.85;
   }
   .menu-bar.open ul {
     max-height: 400px;          
