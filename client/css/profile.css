@@ -48,3 +48,24 @@
 .rpm-section{width:100%;max-width:100%;}
 #rpmFrame{width:100%;height:600px;border:none;border-radius:var(--radius)}
 #rpmUrl.hidden{display:none}
+
+
+
+
+
+/* ---- pop-ups ---- */
+.pop-up{
+  position:fixed;
+  top:20px;
+  left:50%;
+  transform:translateX(-50%);
+  padding:1rem 2rem;
+  border-radius:8px;
+  color:#fff;
+  font-weight:600;
+  z-index:1000;
+  animation:fade .3s ease;
+}
+.pop-up.green{background:#10b981; box-shadow:0 0 12px #10b981;}
+.pop-up.red  {background:#ef4444; box-shadow:0 0 12px #ef4444;}
+@keyframes fade{from{opacity:0;transform:translate(-50%,-10px)}to{opacity:1;transform:translate(-50%,0)}}
