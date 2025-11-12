@@ -1,5 +1,6 @@
 import { authedGet, getTk } from './api.js';
 
+
 const code = localStorage.getItem('meetingCode');
 const scene = localStorage.getItem('selectedScene') || 'conference-room';
 document.getElementById('lobbyCode').textContent = code;

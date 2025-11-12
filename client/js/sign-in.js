@@ -1,34 +1,38 @@
-/* ---------- sign in ---------- */
-document.getElementById('submit').addEventListener('submit', async e => {
-  e.preventDefault(); // ⛔ no page reload
+// js/sign-in.js
+document.getElementById('signInForm').addEventListener('submit', async e => {
+  e.preventDefault();
 
-  const email    = document.getElementById('email').value.trim();
-  const password = document.getElementById('password').value;
+  const email = document.getElementById('email').value.trim();
+  const pwd   = document.getElementById('password').value;
 
-  const res = await fetch('http://localhost:5000/api/login', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email, password })
-  });
+  if (!email || !pwd) return showRedPopUp('Please fill all fields');
 
-  const data = await res.json();
-  if (res.ok) {
-    localStorage.setItem('token', data.token);
-    showGreenPopUp('Welcome back!');
-    setTimeout(() => location.href = 'meet.html', 1200);
-  } else {
-    showRedPopUp(data.error || 'Login failed');
+  try {
+    const res = await fetch('http://localhost:5000/api/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password: pwd })
+    });
+
+    const data = await res.json();
+    if (res.ok) {
+      localStorage.setItem('token', data.token);
+      showGreenPopUp('Welcome back!');
+      setTimeout(() => location.href = 'index.html', 1200);
+    } else {
+      showRedPopUp(data.error || 'Login failed');
+    }
+  } catch {
+    showRedPopUp('Network error – is the server running?');
   }
 });
 
-/* ---------- password toggle ---------- */
 function togglePwd() {
   const p = document.getElementById('password');
   p.type = p.type === 'password' ? 'text' : 'password';
 }
 window.togglePwd = togglePwd;
 
-/* ---------- pop-ups ---------- */
 function showGreenPopUp(msg) {
   const pop = document.createElement('div');
   pop.className = 'pop-up green';

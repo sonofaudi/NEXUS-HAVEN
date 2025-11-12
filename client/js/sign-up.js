@@ -1,27 +1,40 @@
-/* ---------- sign up ---------- */
-document.getElementById('submit').addEventListener('submit', async e => {
-  e.preventDefault(); // ⛔ no page reload
+// js/sign-up.js
+document.getElementById('signUpForm').addEventListener('submit', async e => {
+  e.preventDefault();
 
-  const body = {
-    username: document.getElementById('username').value.trim(),
-    tag:      document.getElementById('tag').value.trim(),
-    email:    document.getElementById('email').value.trim(),
-    password: document.getElementById('password').value
-  };
+  const name = document.getElementById('name').value.trim();
+  const tag  = document.getElementById('tag').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value;
 
-  const res = await fetch('http://localhost:5000/api/register', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(body)
-  });
+  // Basic validation
+  if (!name || !tag || !email || !password) return showRedPopUp('Please fill all fields');
 
-  const data = await res.json();
-  if (res.ok) {
-    localStorage.setItem('token', data.token);
-    showGreenPopUp('Account created!');
-    setTimeout(() => location.href = 'meet.html', 1200);
-  } else {
-    showRedPopUp(data.error || 'Sign-up failed');
+  try {
+    const res = await fetch('http://localhost:5000/api/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: name, tag, email, password })
+    });
+
+    let data = {};
+    try {
+      data = await res.json();
+    } catch {}
+
+    if (res.ok) {
+      // Save token locally
+      localStorage.setItem('token', data.token);
+      showGreenPopUp('Account created!');
+      setTimeout(() => location.href = 'meet.html', 1200);
+    } else {
+      // Show backend error message
+      const msg = data.error || `Sign-up failed (status ${res.status})`;
+      showRedPopUp(msg);
+    }
+  } catch (err) {
+    console.error('❌ Sign-up Error:', err);
+    showRedPopUp('Network error – check your connection or server.');
   }
 });
 

@@ -177,7 +177,7 @@ transition: ease-in-out 0.4s;}
     flex-direction: column;
     gap: 0.5rem;
     padding: 0 1rem;
-    background: rgba(31, 5, 49, 0.705);
+    background: linear-gradient(135deg, rgba(25, 0, 95, 0.76), rgba(135, 54, 172, 0.582));
     
   }
   .model-3d{
@@ -188,7 +188,7 @@ transition: ease-in-out 0.4s;}
     position: absolute;
     left: 10%;
     top: 15%;
-    opacity: 0.85;
+    display: none;
   }
   .menu-bar.open ul {
     max-height: 400px;          

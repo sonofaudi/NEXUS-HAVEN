@@ -1,148 +1,115 @@
-// server.js  (the librarian wakes up)
 require('dotenv').config();
 const express = require('express');
-const cors    = require('cors');
-
-
-const User   = require('./models/User');
+const cors = require('cors');
+const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-const jwt    = require('jsonwebtoken');
-
+const jwt = require('jsonwebtoken');
+const User = require('./models/User');
 
 const app = express();
-app.use(cors());                 // allow pages to call us
-app.use(express.json());         // understand JSON bodies
+app.use(cors());
+app.use(express.json());
 
-// ---- tiny health-check ----
-app.get('/api', (req, res) => res.json({ message:'Nexus back-office is open!' }));
+// ---- logger (enhanced) ----
+app.use((req, res, next) => {
+  const now = new Date().toISOString();
+  console.log(`[${now}] ${req.method} ${req.url} | body:`, req.body);
 
+  // Hook into res.send to log the response
+  const oldSend = res.send;
+  res.send = function (data) {
+    console.log(`[${now}] Response:`, data.toString());
+    oldSend.apply(res, arguments);
+  };
 
-// ---- SIGN UP ----
+  next();
+});
+
+// ---- TEST ROUTE ----
+app.get('/api', (req, res) => res.json({ message: 'Nexus back-office is open!' }));
+
+// ---- REGISTER ----
 app.post('/api/register', async (req, res) => {
   try {
-    const { username, email, password } = req.body;
+    const { username, tag, email, password } = req.body;
+    if (!username || !email || !password)
+      return res.status(400).json({ error: 'Missing fields' });
 
-    // 1. check duplicate
+    // Check for duplicate email
     const exists = await User.findOne({ email });
     if (exists) return res.status(400).json({ error: 'Email already registered' });
 
-    // 2. hash password
+    // Hash password and create user
     const hashed = await bcrypt.hash(password, 12);
+    const user = await User.create({ username, tag, email, password: hashed });
 
-    // 3. create user
-    const user = await User.create({ username, email, password: hashed });
-
-    // 4. give them a stamp (JWT)
+    // Create JWT token
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
 
-    res.status(201).json({ token, user: { id: user._id, username, email } });
+    res.status(201).json({
+      message: 'User registered successfully',
+      token,
+      user: { id: user._id, username, email, tag },
+    });
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
 });
 
-// ---- LOG IN ----
+// ---- LOGIN ----
 app.post('/api/login', async (req, res) => {
   try {
     const { email, password } = req.body;
-
-    // 1. find user
     const user = await User.findOne({ email });
     if (!user) return res.status(400).json({ error: 'User not found' });
 
-    // 2. check password
     const match = await bcrypt.compare(password, user.password);
     if (!match) return res.status(400).json({ error: 'Wrong password' });
 
-    // 3. give token
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
-    res.json({ token, user: { id: user._id, username: user.username, email } });
+    res.json({ token, user: { id: user._id, username: user.username, email, tag: user.tag } });
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
 });
 
-
-
-
-
-
-// ---- WHO AM I? (protected) ----
+// ---- AUTH MIDDLEWARE ----
 const auth = (req, res, next) => {
-  const head = req.headers.authorization;
-  if (!head) return res.status(401).json({ error: 'No token' });
+  const header = req.headers.authorization;
+  if (!header) return res.status(401).json({ error: 'No token' });
 
-  const token = head.split(' ')[1];
   try {
+    const token = header.split(' ')[1];
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.userId = decoded.id;
     next();
   } catch {
-    res.status(401).json({ error: 'Bad token' });
+    res.status(401).json({ error: 'Invalid token' });
   }
 };
 
+// ---- GET CURRENT USER ----
 app.get('/api/me', auth, async (req, res) => {
   const user = await User.findById(req.userId).select('-password');
+  if (!user) return res.status(404).json({ error: 'User not found' });
   res.json(user);
 });
 
-
-
-
-// ---- UPDATE PROFILE (protected) ----
+// ---- UPDATE PROFILE ----
 app.put('/api/profile', auth, async (req, res) => {
   try {
-    const updates = req.body; // { username, tag, profilePic, ... }
-    const user  = await User.findByIdAndUpdate(req.userId, updates, { new: true }).select('-password');
+    const updates = req.body;
+    const user = await User.findByIdAndUpdate(req.userId, updates, { new: true }).select('-password');
     res.json({ message: 'Profile updated', user });
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
 });
 
-
-
-
-
-
-
-// ---- SAVE AVATAR (protected) ----
-app.post('/api/avatar', auth, async (req, res) => {
-  try {
-    const { avatarUrl, character } = req.body; // avatarUrl = GLB link, character = file name
-    const user = await User.findByIdAndUpdate(
-      req.userId,
-      { avatarUrl, character },
-      { new: true }
-    ).select('-password');
-    res.json({ message: 'Avatar saved', user });
-  } catch (e) {
-    res.status(500).json({ error: e.message });
-  }
-});
-
-
-
-
-// ---- UNITY AVATAR BRIDGE (protected) ----
-app.get('/api/unity/avatar', auth, async (req, res) => {
-  const user = await User.findById(req.userId).select('username avatarUrl character');
-  if (!user.avatarUrl) return res.status(404).json({ error: 'No avatar' });
-  res.json({
-    username: user.username,
-    avatarUrl: user.avatarUrl,
-    character: user.character
-  });
-});
-
-
-// ---- plug in database FIRST ----
-const mongoose = require('mongoose');
+// ---- CONNECT DATABASE ----
 mongoose.connect(process.env.MONGO_URL)
-  .then(() => console.log('📚  Bookshelf connected'))
-  .catch(err => console.error('❌  Bookshelf error:', err));
+  .then(() => console.log('📚 Connected to MongoDB'))
+  .catch(err => console.error('❌ MongoDB error:', err));
 
-// ---- THEN open the doors ----
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Librarian ready on http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(`✅ Server running at http://localhost:${PORT}`));

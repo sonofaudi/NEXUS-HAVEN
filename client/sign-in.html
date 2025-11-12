@@ -38,5 +38,25 @@
 </main>
 
 <script type="module" src="js/sign-in.js"></script>
+
+<script>
+/* ---- spy logger ---- */
+function showGreenPopUp(msg) {
+  const pop = document.createElement('div');
+  pop.className = 'pop-up green';
+  pop.textContent = msg;
+  document.body.appendChild(pop);
+  setTimeout(() => pop.remove(), 3000);
+  console.log('🟢 GREEN:', msg);
+}
+function showRedPopUp(msg) {
+  const pop = document.createElement('div');
+  pop.className = 'pop-up red';
+  pop.textContent = msg;
+  document.body.appendChild(pop);
+  setTimeout(() => pop.remove(), 3000);
+  console.log('🔴 RED:', msg);
+}
+</script>
 </body>
 </html>
