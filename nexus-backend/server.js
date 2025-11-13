@@ -113,3 +113,30 @@ mongoose.connect(process.env.MONGO_URL)
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`✅ Server running at http://localhost:${PORT}`));
+
+
+
+
+
+
+
+
+
+// >>>  PUT  /api/profile  (inside server.js)  <<<
+app.put('/api/profile', auth, async (req, res) => {
+  try {
+    const updates = req.body;
+    const user = await User.findByIdAndUpdate(req.userId, updates, {
+      new: true,
+      runValidators: true
+    }).select('-password');
+    res.json({ message: 'Profile updated', user });
+  } catch (e) {
+    /*  Mongo duplicate  */
+    if (e.code === 11000) {
+      const field = Object.keys(e.keyPattern)[0];
+      return res.status(409).json({ error: `${field} already taken` });
+    }
+    res.status(500).json({ error: e.message });
+  }
+});
